@@ -107,5 +107,5 @@ class KafkaLog4jAppender extends AppenderSkeleton with Logging {
     }
   }
 
-  override def requiresLayout: Boolean = false
+  override def requiresLayout: Boolean = true
 }
