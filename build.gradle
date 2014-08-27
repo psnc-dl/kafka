@@ -38,21 +38,14 @@ subprojects {
 
   uploadArchives {
     repositories {
-      signing {
-        sign configurations.archives
-
-        // To test locally, replace mavenUrl in ~/.gradle/gradle.properties to file://localhost/tmp/myRepo/
         mavenDeployer {
-          beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-          repository(url: "${mavenUrl}") {
-            authentication(userName: "${mavenUsername}", password: "${mavenPassword}")
-          }
+	   repository(url:"file://localhost/tmp/myRepo/")
           afterEvaluate {
             pom.artifactId = "${archivesBaseName}"
             pom.project {
               name 'Apache Kafka'
               packaging 'jar'
-              url 'http://kafka.apache.org'
+              url 'https://github.com/psnc-dl/kafka'
               licenses {
                 license {
                   name 'The Apache Software License, Version 2.0'
@@ -61,8 +54,7 @@ subprojects {
                 }
               }
             }
-          }
-        }
+         }
       }
     }
   }
